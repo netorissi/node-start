@@ -16,11 +16,13 @@ app.get("/repositories", (request, response) => {
 });
 
 app.post("/repositories", (request, response) => {
-  const { title, url, techs } = request.body;
+  const { id, title, url, techs } = request.body;
 
+  console.log("title, url, techs")
+  console.log(title, url, techs)
+  
   const repository = { 
-    // id: '1',
-    id: uuid(),
+    id: id || uuid(),
     title,
     url,
     techs,
@@ -64,7 +66,6 @@ app.delete("/repositories/:id", (request, response) => {
   
   repositories.map((repo, i) => {
     if (repo.id === id) {
-      console.log(repo)
       repositories.splice(i, 1);
       deleted = true;
     }
